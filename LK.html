@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Личный кабинет - Career Navigation</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body class="career-body">
+    <!-- Навигация -->
+    <nav class="navbar navbar-expand-lg career-navbar">
+        <div class="container">
+            <a class="navbar-brand career-navbar-brand" href="#">Career Navigator</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav">
+                <i class="fas fa-bars text-white"></i>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link career-nav-link" href="/"><i></i>Главная</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link career-nav-link" href="/recommendations"><i></i>Лента рекомендаций</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link career-nav-link" href="{{ url_for('search_page') }}"><i></i>Поиск профессий</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="btn career-logout-btn" href="{{ url_for('login_page') }}"><i></i>Выйти</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Фоновые круги -->
+    <div class="career-bg-circles">
+        <div class="career-circle-1"></div>
+        <div class="career-circle-2"></div>
+        <div class="career-circle-3"></div>
+        <div class="career-circle-4"></div>
+    </div>
+
+    <!-- Основной контент -->
+    <div class="career-dashboard-container">
+        <!-- Приветственная карточка -->
+        <div class="career-welcome-card">
+            <h1 class="career-welcome-title">Добро пожаловать, {{ session.username }}!</h1>
+            <p class="career-welcome-subtitle">Пройдите психологические тесты, чтобы лучше понять свои профессиональные склонности и получить персонализированные рекомендации</p>
+
+            <div class="career-progress-indicator">
+                <span class="career-progress-label">Общий прогресс:</span>
+                <div class="career-progress-bar">
+                    <div class="career-progress-fill" id="progressFill" style="width: 0%"></div>
+                </div>
+                <span class="career-progress-label" id="progressText">0/4</span>
+            </div>
+        </div>
+
+        <!-- Доступные тесты -->
+        <h2 class="career-section-title">Психологические тесты для профориентации</h2>
+        <div class="career-tests-section">
+
+            <!-- Тест 1: ДДО Климова (ПЕРВЫЙ И ОБЯЗАТЕЛЬНЫЙ) -->
+            <div class="career-test-card">
+
+                <div class="career-test-status career-status-not-started" id="klimov-status">Не начат</div>
+                <h3 class="career-test-title">ДДО Климова</h3>
+                <p class="career-test-description">
+                    Дифференциально-диагностический опросник для определения предпочитаемых типов профессиональной деятельности: "человек-человек", "человек-техника", "человек-природа", "человек-знак", "человек-художественный образ".
+                </p>
+                <div class="career-test-details">
+                    <div class="career-test-time">
+                        <i class="fas fa-clock"></i> 5-10 минут
+                    </div>
+                    <div class="career-test-questions">
+                        <i class="fas fa-question-circle"></i> 20 пар вопросов
+                    </div>
+                </div>
+                <a href="{{ url_for('tests.klimov_page') }}" class="career-btn-test" id="klimov-btn">
+                    <i class="fas fa-play-circle mr-2"></i>Начать тест
+                </a>
+            </div>
+
+            <!-- Тест 2: Методика Потемкиной (заблокирован до прохождения Климова) -->
+            <div class="career-test-card">
+
+                <div class="career-test-status career-status-not-started" id="potemkina-status">Не начат</div>
+                <h3 class="career-test-title">Методика Потемкиной</h3>
+                <p class="career-test-description">
+                    Определение социально-психологических установок личности в мотивационно-потребностной сфере. Помогает понять, что для вас важнее: альтруизм или эгоизм, процесс или результат, свобода или власть.
+                </p>
+                <div class="career-test-details">
+                    <div class="career-test-time">
+                        <i class="fas fa-clock"></i> 20 минут
+                    </div>
+                    <div class="career-test-questions">
+                        <i class="fas fa-question-circle"></i> 80 вопросов
+                    </div>
+                </div>
+                <button class="career-btn-test career-btn-disabled" id="potemkina-btn" disabled>
+                    <i class="fas fa-lock mr-2"></i>Сначала пройдите тест Климова
+                </button>
+            </div>
+
+            <!-- Тест 3: Тест "Якоря карьеры" (заблокирован до прохождения Климова) -->
+            <div class="career-test-card">
+
+                <div class="career-test-status career-status-not-started" id="career-anchors-status">Не начат</div>
+                <h3 class="career-test-title">Тест "Якоря карьеры"</h3>
+                <p class="career-test-description">
+                    Определение ключевых мотиваторов в профессиональной деятельности. Помогает понять, что для вас наиболее важно в работе: стабильность, вызов, автономия, служение или другие ценности.
+                </p>
+                <div class="career-test-details">
+                    <div class="career-test-time">
+                        <i class="fas fa-clock"></i> 10-15 минут
+                    </div>
+                    <div class="career-test-questions">
+                        <i class="fas fa-question-circle"></i> 40 вопросов
+                    </div>
+                </div>
+                <button class="career-btn-test career-btn-disabled" id="career-anchors-btn" disabled>
+                    <i class="fas fa-lock mr-2"></i>Сначала пройдите тест Климова
+                </button>
+            </div>
+
+            <!-- Тест 4: Тест Ряховского (заблокирован до прохождения Климова) -->
+            <div class="career-test-card">
+
+                <div class="career-test-status career-status-not-started" id="ryakhovsky-status">Не начат</div>
+                <h3 class="career-test-title">Тест Ряховского</h3>
+                <p class="career-test-description">
+                    Оценка коммуникативных и организаторских способностей. Помогает определить уровень развития навыков общения, лидерских качеств и способности к организации деятельности.
+                </p>
+                <div class="career-test-details">
+                    <div class="career-test-time">
+                        <i class="fas fa-clock"></i> 10-15 минут
+                    </div>
+                    <div class="career-test-questions">
+                        <i class="fas fa-question-circle"></i> 40 вопросов
+                    </div>
+                </div>
+                <button class="career-btn-test career-btn-disabled" id="ryakhovsky-btn" disabled>
+                    <i class="fas fa-lock mr-2"></i>Сначала пройдите тест Климова
+                </button>
+            </div>
+
+        </div>
+
+        <!-- Результаты тестов -->
+        <div class="career-results-section">
+            <h2 class="career-section-title">Результаты тестирования</h2>
+
+            <!-- Блок результатов теста Климова (скрыт по умолчанию) -->
+            <div id="klimov-results" style="display:none;">
+                <h4 class="mb-3" style="color: var(--cornflower-blue);">
+                    Результаты теста Климова
+                </h4>
+
+                <canvas id="klimovCanvas" width="600" height="600"></canvas>
+
+                <p class="mt-3" id="klimov-dominant" style="font-weight: 600;"></p>
+            </div>
+
+            <!-- Блок для отображения, когда результаты недоступны -->
+            <div id="no-results-block">
+                <div class="career-no-results">
+                    <div class="career-no-results-icon">
+                        <i class="fas fa-chart-bar"></i>
+                    </div>
+                    <h4 class="mb-3" style="color: var(--cornflower-blue);" id="results-title">Результаты пока недоступны</h4>
+                    <p class="career-no-results-text" id="results-text">
+                        Начните с теста Климова, чтобы увидеть ваши результаты и получить персональные рекомендации по выбору профессии.
+                    </p>
+                    <a href="{{ url_for('tests.klimov_page') }}" class="career-btn-test" style="max-width: 250px; margin: 0 auto;">
+                        <i class="fas fa-play-circle mr-2"></i>Начать первый тест
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Информационный блок -->
+        <div class="career-welcome-card mt-4">
+            <h3 class="mb-3" style="color: var(--cornflower-blue); font-family: 'Soyuz Grotesk', sans-serif;">Как это работает?</h3>
+            <div class="row">
+                <div class="col-md-3 text-center mb-3">
+                    <div class="mb-2" style="font-size: 36px; color: var(--coffee-crema);">1</div>
+                    <h5 style="color: var(--cornflower-blue); font-family: 'Soyuz Grotesk', sans-serif;">Пройдите тест Климова</h5>
+                    <p style="color: var(--shadowed-lace); font-size: 14px; font-family: 'Soyuz Grotesk', sans-serif;">Это обязательный первый тест</p>
+                </div>
+                <div class="col-md-3 text-center mb-3">
+                    <div class="mb-2" style="font-size: 36px; color: var(--coffee-crema);">2</div>
+                    <h5 style="color: var(--cornflower-blue); font-family: 'Soyuz Grotesk', sans-serif;">Другие тесты откроются</h5>
+                    <p style="color: var(--shadowed-lace); font-size: 14px; font-family: 'Soyuz Grotesk', sans-serif;">После Климова станут доступны остальные</p>
+                </div>
+                <div class="col-md-3 text-center mb-3">
+                    <div class="mb-2" style="font-size: 36px; color: var(--coffee-crema);">3</div>
+                    <h5 style="color: var(--cornflower-blue); font-family: 'Soyuz Grotesk', sans-serif;">Смотрите рекомендации</h5>
+                    <p style="color: var(--shadowed-lace); font-size: 14px; font-family: 'Soyuz Grotesk', sans-serif;">Персональный подбор профессий</p>
+                </div>
+                <div class="col-md-3 text-center mb-3">
+                    <div class="mb-2" style="font-size: 36px; color: var(--coffee-crema);">4</div>
+                    <h5 style="color: var(--cornflower-blue); font-family: 'Soyuz Grotesk', sans-serif;">Планируйте развитие</h5>
+                    <p style="color: var(--shadowed-lace); font-size: 14px; font-family: 'Soyuz Grotesk', sans-serif;">Рекомендации по обучению и карьере</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+
+    <!-- Основной JavaScript -->
+    <script>
+        document.addEventListener('DOMContentLoaded', async () => {
+            await loadUserStatus();
+        });
+
+        async function loadUserStatus() {
+            try {
+                const res = await fetch('/api/tests/status');
+                const data = await res.json();
+
+                // Имя пользователя
+                const welcome = document.querySelector('.career-welcome-title');
+                if (welcome && data.username) {
+                    welcome.textContent = `Добро пожаловать, ${data.username}!`;
+                }
+
+                updateProgress(data.testsCompleted);
+                updateAccess(data.testsCompleted);
+                updateResults(data);
+
+            } catch (e) {
+                console.error('Ошибка загрузки статуса', e);
+            }
+        }
+
+        /* 🔹 ПРОГРЕСС */
+        function updateProgress(tests) {
+            const total = 4;
+            const completed = Object.values(tests).filter(Boolean).length;
+
+            document.getElementById('progressFill').style.width =
+                `${(completed / total) * 100}%`;
+
+            document.getElementById('progressText').textContent =
+                `${completed}/${total}`;
+
+            updateTestStatus('klimov', tests.klimov);
+            updateTestStatus('potemkina', tests.potemkina);
+            updateTestStatus('career_anchors', tests.career_anchors);
+            updateTestStatus('ryakhovsky', tests.ryakhovsky);
+        }
+
+        /* 🔹 СТАТУСЫ КАРТОЧЕК */
+        function updateTestStatus(testName, isCompleted) {
+            const statusMap = {
+                klimov: 'klimov-status',
+                potemkina: 'potemkina-status',
+                career_anchors: 'career-anchors-status',
+                ryakhovsky: 'ryakhovsky-status'
+            };
+
+            const el = document.getElementById(statusMap[testName]);
+            if (!el) return;
+
+            if (isCompleted) {
+                el.textContent = 'Пройден';
+                el.className = 'career-test-status career-status-completed';
+
+                if (testName === 'klimov') {
+                    const btn = document.getElementById('klimov-btn');
+                    btn.innerHTML = '<i class="fas fa-chart-bar mr-2"></i>Посмотреть результаты';
+                    btn.onclick = scrollToKlimovResults;
+                }
+            } else {
+                el.textContent = 'Не начат';
+                el.className = 'career-test-status career-status-not-started';
+            }
+        }
+
+        /* 🔹 ДОСТУП К ТЕСТАМ */
+        function updateAccess(tests) {
+            if (tests.klimov) {
+                unlockOtherTests();
+            } else {
+                lockOtherTests();
+            }
+        }
+
+        /* 🔹 РЕЗУЛЬТАТЫ */
+        function updateResults(data) {
+            if (!data.testsCompleted || !data.testsCompleted.klimov) {
+                document.getElementById('klimov-results').style.display = 'none';
+                document.getElementById('no-results-block').style.display = 'block';
+                return;
+            }
+
+            document.getElementById('klimov-results').style.display = 'block';
+            document.getElementById('no-results-block').style.display = 'none';
+
+            drawKlimovPie(data.klimov_scores);
+            document.getElementById('klimov-dominant').innerText =
+                `Доминирующий тип: ${translateType(data.klimov_result)}`;
+        }
+
+        function scrollToKlimovResults() {
+            document.querySelector('.career-results-section')
+                .scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function translateType(type) {
+            const types = {
+                human: 'Человек – человек',
+                tech: 'Человек – техника',
+                nature: 'Человек – природа',
+                sign: 'Человек – знаковые системы',
+                art: 'Человек – художественный образ'
+            };
+            return types[type] || 'Не определен';
+        }
+
+        /* 🔹 Разблокировка других тестов */
+        function unlockOtherTests() {
+            // Методика Потемкиной
+            const potemkinaBtn = document.getElementById('potemkina-btn');
+            potemkinaBtn.innerHTML = '<i class="fas fa-play-circle mr-2"></i>Начать тест';
+            potemkinaBtn.disabled = false;
+            potemkinaBtn.classList.remove('career-btn-disabled');
+            potemkinaBtn.href = "#";
+            potemkinaBtn.onclick = null;
+
+            // Якоря карьеры
+            const careerAnchorsBtn = document.getElementById('career-anchors-btn');
+            careerAnchorsBtn.innerHTML = '<i class="fas fa-play-circle mr-2"></i>Начать тест';
+            careerAnchorsBtn.disabled = false;
+            careerAnchorsBtn.classList.remove('career-btn-disabled');
+            careerAnchorsBtn.href = "#";
+            careerAnchorsBtn.onclick = null;
+
+            // Тест Ряховского
+            const ryakhovskyBtn = document.getElementById('ryakhovsky-btn');
+            ryakhovskyBtn.innerHTML = '<i class="fas fa-play-circle mr-2"></i>Начать тест';
+            ryakhovskyBtn.disabled = false;
+            ryakhovskyBtn.classList.remove('career-btn-disabled');
+            ryakhovskyBtn.href = "#";
+            ryakhovskyBtn.onclick = null;
+        }
+
+        /* 🔹 Блокировка других тестов */
+        function lockOtherTests() {
+            // Методика Потемкиной
+            const potemkinaBtn = document.getElementById('potemkina-btn');
+            potemkinaBtn.innerHTML = '<i class="fas fa-lock mr-2"></i>Сначала пройдите тест Климова';
+            potemkinaBtn.disabled = true;
+            potemkinaBtn.classList.add('career-btn-disabled');
+            potemkinaBtn.href = "#";
+
+            // Якоря карьеры
+            const careerAnchorsBtn = document.getElementById('career-anchors-btn');
+            careerAnchorsBtn.innerHTML = '<i class="fas fa-lock mr-2"></i>Сначала пройдите тест Климова';
+            careerAnchorsBtn.disabled = true;
+            careerAnchorsBtn.classList.add('career-btn-disabled');
+            careerAnchorsBtn.href = "#";
+
+            // Тест Ряховского
+            const ryakhovskyBtn = document.getElementById('ryakhovsky-btn');
+            ryakhovskyBtn.innerHTML = '<i class="fas fa-lock mr-2"></i>Сначала пройдите тест Климова';
+            ryakhovskyBtn.disabled = true;
+            ryakhovskyBtn.classList.add('career-btn-disabled');
+            ryakhovskyBtn.href = "#";
+        }
+
+        // Canvas — ПИРОГ + 8 КОЛЕЦ + 5 СЕКТОРОВ (увеличенная версия)
+function drawKlimovPie(scores) {
+    const canvas = document.getElementById('klimovCanvas');
+    if (!canvas) return;
+
+    const ctx = canvas.getContext('2d');
+
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    const cx = canvas.width / 2;
+    const cy = canvas.height / 2;
+    const maxRadius = 250; // Увеличиваем радиус для большей диаграммы
+
+    const categories = [
+        { key: 'tech', label: 'Техника', color: '#5DA9E9' },
+        { key: 'sign', label: 'Знак', color: '#A66DD4' },
+        { key: 'human', label: 'Человек', color: '#F28482' },
+        { key: 'nature', label: 'Природа', color: '#84C318' },
+        { key: 'art', label: 'Искусство', color: '#F6BD60' }
+    ];
+
+    /* 🔹 СЕТКА: 8 КОЛЕЦ (максимальный балл = 8) */
+    ctx.strokeStyle = '#ddd';
+    ctx.lineWidth = 0.8;
+    for (let i = 1; i <= 8; i++) {
+        ctx.beginPath();
+        ctx.arc(cx, cy, (maxRadius / 8) * i, 0, Math.PI * 2);
+        ctx.stroke();
+
+        // Подписи для колец (значения от 1 до 8)
+        if (i <= 7) { // Подписи от 1 до 7 внутри диаграммы
+            ctx.fillStyle = '#888';
+            ctx.font = '12px Arial';
+            ctx.textAlign = 'right';
+            ctx.textBaseline = 'middle';
+            ctx.fillText(i.toString(), cx + 5, cy - (maxRadius / 8) * i);
+        }
+    }
+
+    /* 🔹 СЕКТОРА */
+    const sectorAngle = (Math.PI * 2) / categories.length;
+
+    categories.forEach((cat, i) => {
+        const value = scores[cat.key] || 0;
+        const radius = (value / 8) * maxRadius; // Делим на 8 (максимальный балл)
+
+        // Заполнение сектора
+        ctx.beginPath();
+        ctx.moveTo(cx, cy);
+        ctx.fillStyle = cat.color + '80'; // Добавляем прозрачность
+        ctx.arc(
+            cx,
+            cy,
+            radius,
+            i * sectorAngle,
+            (i + 1) * sectorAngle
+        );
+        ctx.closePath();
+        ctx.fill();
+
+        // Обводка сектора
+        ctx.beginPath();
+        ctx.moveTo(cx, cy);
+        ctx.strokeStyle = cat.color;
+        ctx.lineWidth = 3;
+        ctx.arc(
+            cx,
+            cy,
+            radius,
+            i * sectorAngle,
+            (i + 1) * sectorAngle
+        );
+        ctx.closePath();
+        ctx.stroke();
+
+        /* 🔹 ПОДПИСЬ КАТЕГОРИИ */
+        const textAngle = i * sectorAngle + sectorAngle / 2;
+        ctx.fillStyle = '#333';
+        ctx.font = 'bold 16px Arial'; // Увеличиваем шрифт
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+        ctx.fillText(
+            cat.label,
+            cx + Math.cos(textAngle) * (maxRadius + 35), // Увеличиваем отступ
+            cy + Math.sin(textAngle) * (maxRadius + 35)
+        );
+
+        /* 🔹 ЗНАЧЕНИЕ БАЛЛОВ */
+        ctx.fillStyle = '#000';
+        ctx.font = 'bold 18px Arial'; // Увеличиваем шрифт для значений
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+        const valueRadius = radius > 20 ? radius / 2 : radius + 15;
+        ctx.fillText(
+            value.toString(),
+            cx + Math.cos(textAngle) * valueRadius,
+            cy + Math.sin(textAngle) * valueRadius
+        );
+    });
+
+    // Центральная точка
+    ctx.beginPath();
+    ctx.arc(cx, cy, 5, 0, Math.PI * 2); // Увеличиваем центральную точку
+    ctx.fillStyle = '#333';
+    ctx.fill();
+
+    /* 🔹 ЛЕГЕНДА ДЛЯ КОЛЕЦ (максимальный балл = 8) */
+    ctx.fillStyle = '#666';
+    ctx.font = '14px Arial';
+    ctx.textAlign = 'right';
+    ctx.textBaseline = 'top';
+
+}
+    </script>
+</body>
+</html>
