@@ -1,0 +1,1064 @@
+/* style.css - Оригинальные стили для сайта Career Navigation */
+
+/* 0. ШРИФТЫ (шрифты в папке fonts) */
+@font-face {
+    font-family: 'Educational Gothic';
+    src: url('../static/fonts/EDUCATIONALGOTHIC-REGULAR.OTF') format('opentype');
+    font-weight: 400; /* Regular */
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Mulish';
+    src: url('../static/fonts/Mulish.ttf') format('truetype');
+    font-weight: 400; /* Regular/Normal */
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Mulish';
+    src: url('../static/fonts/Mulish.ttf') format('truetype');
+    font-weight: 700; /* Bold */
+    font-style: normal;
+    font-display: swap;
+}
+
+/* 1. ЦВЕТА (как у тебя было) */
+:root {
+    --soft-sky-blue: #9BB9E0;
+    --parchment-white: #F4F1E8;
+    --coffee-crema: #C18041;
+    --cornflower-blue: #5976AC;
+    --shadowed-lace: #A89F93;
+    --success-green: #4CAF50;
+    --warning-orange: #FF9800;
+}
+
+/* 2. ОСНОВНЫЕ СТИЛИ СТРАНИЦЫ */
+.career-body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Mulish', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+    background-color: var(--parchment-white);
+    position: relative;
+}
+
+/* 3. ФОНОВЫЕ КРУГИ (копируем твои круги) */
+.career-bg-circles {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.career-circle-1 {
+    position: absolute;
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, var(--soft-sky-blue) 0%, transparent 70%);
+    border-radius: 50%;
+    opacity: 0.15;
+    top: -200px;
+    right: -100px;
+    filter: blur(20px);
+    animation: career-float 20s ease-in-out infinite;
+}
+
+.career-circle-2 {
+    position: absolute;
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, var(--coffee-crema) 0%, transparent 70%);
+    border-radius: 50%;
+    opacity: 0.1;
+    bottom: -150px;
+    left: -100px;
+    filter: blur(15px);
+    animation: career-float 25s ease-in-out infinite reverse;
+    animation-delay: -5s;
+}
+
+.career-circle-3 {
+    position: absolute;
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, var(--cornflower-blue) 0%, transparent 70%);
+    border-radius: 50%;
+    opacity: 0.08;
+    top: 50%;
+    left: 10%;
+    transform: translateY(-50%);
+    filter: blur(10px);
+    animation: career-float 30s ease-in-out infinite;
+    animation-delay: -10s;
+}
+
+.career-circle-4 {
+    position: absolute;
+    width: 250px;
+    height: 250px;
+    background: radial-gradient(circle, var(--shadowed-lace) 0%, transparent 70%);
+    border-radius: 50%;
+    opacity: 0.05;
+    bottom: 20%;
+    right: 15%;
+    filter: blur(8px);
+}
+
+/* 4. КОНТЕЙНЕРЫ ДЛЯ ФОРМ */
+.career-form-container {
+    position: relative;
+    z-index: 3;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 40px 20px;
+}
+
+/* 5. ОСНОВНАЯ ФОРМА (регистрация/вход) */
+.career-form-box {
+    width: 100%;
+    max-width: 600px;
+    background-color: white;
+    padding: 60px 50px;
+    border-radius: 24px;
+    box-shadow: 0 20px 60px rgba(89, 118, 172, 0.15), 0 8px 30px rgba(0, 0, 0, 0.08);
+    border: 1px solid rgba(168, 159, 147, 0.1);
+    position: relative;
+    overflow: hidden;
+    backdrop-filter: blur(5px);
+    background: rgba(255, 255, 255, 0.95);
+    animation: career-fadeInUp 0.6s ease-out;
+}
+
+/* 6. КРУГИ ВНУТРИ ФОРМЫ (твои маленькие круги) */
+.career-form-circles {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.career-form-circle-5 {
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    background: radial-gradient(circle, var(--soft-sky-blue) 0%, transparent 70%);
+    border-radius: 50%;
+    opacity: 0.12;
+    top: -80px;
+    right: -50px;
+    filter: blur(15px);
+    z-index: 1;
+    animation: career-float 15s ease-in-out infinite;
+    animation-delay: -2s;
+}
+
+.career-form-circle-6 {
+    position: absolute;
+    width: 180px;
+    height: 180px;
+    background: radial-gradient(circle, var(--coffee-crema) 0%, transparent 70%);
+    border-radius: 50%;
+    opacity: 0.1;
+    bottom: -70px;
+    left: -40px;
+    filter: blur(12px);
+    z-index: 1;
+    animation: career-float 18s ease-in-out infinite reverse;
+    animation-delay: -7s;
+}
+
+.career-form-circle-7 {
+    position: absolute;
+    width: 150px;
+    height: 150px;
+    background: radial-gradient(circle, rgba(155, 185, 224, 0.1) 0%, transparent 70%);
+    border-radius: 50%;
+    opacity: 0.08;
+    top: 30%;
+    left: -30px;
+    filter: blur(8px);
+    z-index: 1;
+}
+
+.career-form-circle-8 {
+    position: absolute;
+    width: 120px;
+    height: 120px;
+    background: radial-gradient(circle, rgba(193, 128, 65, 0.08) 0%, transparent 70%);
+    border-radius: 50%;
+    opacity: 0.06;
+    bottom: 40%;
+    right: -25px;
+    filter: blur(6px);
+    z-index: 1;
+}
+
+/* 7. СОДЕРЖАНИЕ ФОРМЫ */
+.career-form-content {
+    position: relative;
+    z-index: 2;
+}
+
+/* 8. ШАПКА ФОРМЫ */
+.career-form-header {
+    text-align: center;
+    margin-bottom: 50px;
+    position: relative;
+}
+
+.career-form-logo {
+    color: var(--cornflower-blue);
+    font-size: 32px;
+    font-weight: 800;
+    letter-spacing: 1px;
+    margin-bottom: 20px;
+    display: inline-block;
+    position: relative;
+    text-transform: uppercase;
+    font-family: 'Educational Gothic', sans-serif;
+}
+
+.career-form-logo::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 120px;
+    height: 5px;
+    background: linear-gradient(90deg, var(--coffee-crema), var(--soft-sky-blue));
+    border-radius: 3px;
+}
+
+.career-form-title {
+    color: var(--cornflower-blue);
+    font-weight: 700;
+    font-size: 38px;
+    margin-bottom: 15px;
+    text-align: center;
+    font-family: 'Educational Gothic', sans-serif;
+}
+
+.career-form-subtitle {
+    color: var(--shadowed-lace);
+    font-size: 18px;
+    text-align: center;
+    line-height: 1.6;
+    max-width: 450px;
+    margin: 0 auto 40px;
+    font-family: 'Mulish', sans-serif;
+}
+
+/* 9. ГРУППЫ ПОЛЕЙ ВВОДА */
+.career-form-group {
+    margin-bottom: 25px;
+    position: relative;
+    z-index: 2;
+}
+
+.career-form-label {
+    color: var(--cornflower-blue);
+    font-weight: 600;
+    margin-bottom: 12px;
+    display: block;
+    font-size: 16px;
+    font-family: 'Mulish', sans-serif;
+}
+
+.career-form-control {
+    border: 2px solid rgba(155, 185, 224, 0.5);
+    padding: 18px 20px;
+    border-radius: 14px;
+    transition: all 0.3s;
+    color: #333;
+    background-color: rgba(255, 255, 255, 0.9);
+    font-size: 17px;
+    height: auto;
+    backdrop-filter: blur(5px);
+    width: 100%;
+    box-sizing: border-box;
+    font-family: 'Mulish', sans-serif;
+}
+
+.career-form-control:focus {
+    border-color: var(--coffee-crema);
+    box-shadow: 0 0 0 4px rgba(193, 128, 65, 0.1);
+    background-color: white;
+    outline: none;
+}
+
+.career-form-control::placeholder {
+    color: var(--shadowed-lace);
+    opacity: 0.6;
+    font-size: 16px;
+}
+
+/* 10. ПОДСКАЗКИ */
+.career-form-hint {
+    font-size: 14px;
+    color: var(--shadowed-lace);
+    margin-top: 10px;
+    display: block;
+    opacity: 0.8;
+    font-family: 'Mulish', sans-serif;
+}
+
+/* 11. ССЫЛКА "ЗАБЫЛИ ПАРОЛЬ" */
+.career-forgot-password {
+    text-align: right;
+    margin-top: 10px;
+    margin-bottom: 30px;
+}
+
+.career-forgot-password a {
+    color: var(--cornflower-blue);
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: 500;
+    transition: color 0.3s;
+    font-family: 'Mulish', sans-serif;
+}
+
+.career-forgot-password a:hover {
+    color: var(--coffee-crema);
+    text-decoration: underline;
+}
+
+/* 12. КНОПКИ */
+.career-btn-primary {
+    background: linear-gradient(135deg, var(--coffee-crema) 0%, #d4945a 100%);
+    border: none;
+    padding: 20px;
+    font-weight: 600;
+    border-radius: 14px;
+    transition: all 0.3s;
+    font-size: 18px;
+    letter-spacing: 0.5px;
+    color: white;
+    box-shadow: 0 6px 20px rgba(193, 128, 65, 0.2);
+    margin-top: 15px;
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    cursor: pointer;
+    display: block;
+    text-align: center;
+    text-decoration: none;
+    font-family: 'Mulish', sans-serif;
+}
+
+.career-btn-primary:hover {
+    background: linear-gradient(135deg, #b3713a 0%, var(--coffee-crema) 100%);
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px rgba(193, 128, 65, 0.3);
+    color: white;
+    text-decoration: none;
+}
+
+.career-btn-outline {
+    color: var(--cornflower-blue);
+    border: 2px solid var(--soft-sky-blue);
+    padding: 18px;
+    font-weight: 600;
+    border-radius: 14px;
+    transition: all 0.3s;
+    background-color: rgba(255, 255, 255, 0.9);
+    font-size: 17px;
+    position: relative;
+    z-index: 2;
+    backdrop-filter: blur(5px);
+    width: 100%;
+    text-decoration: none;
+    display: block;
+    text-align: center;
+    box-sizing: border-box;
+    font-family: 'Mulish', sans-serif;
+}
+
+.career-btn-outline:hover {
+    background: linear-gradient(135deg, var(--soft-sky-blue) 0%, var(--cornflower-blue) 100%);
+    border-color: transparent;
+    color: white;
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px rgba(155, 185, 224, 0.25);
+    text-decoration: none;
+}
+
+/* 13. РАЗДЕЛИТЕЛЬ */
+.career-form-divider {
+    border: none;
+    height: 2px;
+    background: linear-gradient(to right, transparent, var(--soft-sky-blue), var(--coffee-crema), var(--soft-sky-blue), transparent);
+    margin: 45px 0;
+    opacity: 0.4;
+    position: relative;
+    z-index: 2;
+}
+
+/* 14. ФУТЕР ФОРМЫ */
+.career-form-footer {
+    text-align: center;
+    margin-top: 40px;
+    position: relative;
+    z-index: 2;
+}
+
+.career-form-footer p {
+    color: var(--shadowed-lace);
+    margin-bottom: 20px;
+    font-size: 17px;
+    font-family: 'Mulish', sans-serif;
+}
+
+/* 15. СТИЛИ ДЛЯ ЛИЧНОГО КАБИНЕТА */
+
+/* 15.1 Навигация */
+.career-navbar {
+    background: linear-gradient(135deg, var(--cornflower-blue) 0%, var(--soft-sky-blue) 100%);
+    padding: 15px 0;
+    box-shadow: 0 4px 20px rgba(89, 118, 172, 0.2);
+    position: relative;
+    z-index: 10;
+}
+
+.career-navbar-brand {
+    color: white !important;
+    font-weight: 800;
+    font-size: 24px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    font-family: 'Educational Gothic', sans-serif;
+}
+
+.career-nav-link {
+    color: rgba(255, 255, 255, 0.9) !important;
+    font-weight: 500;
+    margin: 0 10px;
+    transition: all 0.3s;
+    font-family: 'Mulish', sans-serif;
+}
+
+.career-nav-link:hover {
+    color: white !important;
+    transform: translateY(-2px);
+}
+
+/* 15.2 Контейнер личного кабинета */
+.career-dashboard-container {
+    position: relative;
+    z-index: 3;
+    padding: 40px 20px;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+/* 15.3 Карточка приветствия */
+.career-welcome-card {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(255, 255, 255, 0.85) 100%);
+    border-radius: 20px;
+    padding: 40px;
+    margin-bottom: 40px;
+    box-shadow: 0 15px 40px rgba(89, 118, 172, 0.15);
+    border: 1px solid rgba(155, 185, 224, 0.3);
+    backdrop-filter: blur(10px);
+}
+
+.career-welcome-title {
+    color: var(--cornflower-blue);
+    font-weight: 700;
+    font-size: 32px;
+    margin-bottom: 10px;
+    font-family: 'Educational Gothic', sans-serif;
+}
+
+.career-welcome-subtitle {
+    color: var(--shadowed-lace);
+    font-size: 18px;
+    margin-bottom: 20px;
+    font-family: 'Mulish', sans-serif;
+}
+
+/* 15.4 Индикатор прогресса */
+.career-progress-indicator {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.career-progress-label {
+    color: var(--cornflower-blue);
+    font-weight: 600;
+    font-family: 'Mulish', sans-serif;
+}
+
+.career-progress-bar {
+    flex-grow: 1;
+    height: 12px;
+    background-color: rgba(155, 185, 224, 0.2);
+    border-radius: 6px;
+    overflow: hidden;
+}
+
+.career-progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--coffee-crema), var(--cornflower-blue));
+    border-radius: 6px;
+    transition: width 0.5s ease-in-out;
+    width: 0%;
+}
+
+/* 15.5 Секция тестов */
+.career-tests-section {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 30px;
+    margin-bottom: 50px;
+}
+
+.career-test-card {
+    background: white;
+    border-radius: 18px;
+    padding: 30px;
+    box-shadow: 0 10px 30px rgba(89, 118, 172, 0.1);
+    border: 1px solid rgba(155, 185, 224, 0.2);
+    transition: all 0.3s;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.career-test-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(89, 118, 172, 0.2);
+}
+
+.career-test-icon {
+    font-size: 40px;
+    margin-bottom: 20px;
+    color: var(--cornflower-blue);
+}
+
+.career-test-title {
+    color: var(--cornflower-blue);
+    font-weight: 700;
+    font-size: 22px;
+    margin-bottom: 15px;
+    font-family: 'Educational Gothic', sans-serif;
+}
+
+.career-test-description {
+    color: var(--shadowed-lace);
+    margin-bottom: 25px;
+    line-height: 1.6;
+    flex-grow: 1;
+    font-family: 'Mulish', sans-serif;
+}
+
+.career-test-details {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    font-size: 14px;
+    color: var(--shadowed-lace);
+    font-family: 'Mulish', sans-serif;
+}
+
+.career-test-time, .career-test-questions {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+/* 15.6 Статусы тестов */
+.career-test-status {
+    display: inline-block;
+    padding: 6px 15px;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 20px;
+    font-family: 'Mulish', sans-serif;
+}
+
+.career-status-not-started {
+    background-color: rgba(168, 159, 147, 0.2);
+    color: var(--shadowed-lace);
+}
+
+.career-status-in-progress {
+    background-color: rgba(255, 152, 0, 0.2);
+    color: var(--warning-orange);
+}
+
+.career-status-completed {
+    background-color: rgba(76, 175, 80, 0.2);
+    color: var(--success-green);
+}
+
+/* 15.7 Кнопки тестов */
+.career-btn-test {
+    background: linear-gradient(135deg, var(--coffee-crema) 0%, #d4945a 100%);
+    border: none;
+    padding: 14px;
+    font-weight: 600;
+    border-radius: 12px;
+    transition: all 0.3s;
+    color: white;
+    box-shadow: 0 6px 20px rgba(193, 128, 65, 0.2);
+    text-align: center;
+    text-decoration: none;
+    display: block;
+    width: 100%;
+    font-family: 'Mulish', sans-serif;
+}
+
+.career-btn-test:hover {
+    background: linear-gradient(135deg, #b3713a 0%, var(--coffee-crema) 100%);
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px rgba(193, 128, 65, 0.3);
+    color: white;
+    text-decoration: none;
+}
+
+.career-btn-disabled {
+    background: linear-gradient(135deg, var(--shadowed-lace) 0%, #b0a8a0 100%);
+    cursor: not-allowed;
+    opacity: 0.7;
+}
+
+.career-btn-disabled:hover {
+    transform: none !important;
+    box-shadow: 0 6px 20px rgba(193, 128, 65, 0.2) !important;
+}
+
+/* 15.8 Секция результатов */
+.career-results-section {
+    background: white;
+    border-radius: 20px;
+    padding: 40px;
+    box-shadow: 0 15px 40px rgba(89, 118, 172, 0.15);
+    margin-bottom: 50px;
+    border: 1px solid rgba(155, 185, 224, 0.2);
+}
+
+.career-section-title {
+    color: var(--cornflower-blue);
+    font-weight: 700;
+    font-size: 28px;
+    margin-bottom: 30px;
+    font-family: 'Educational Gothic', sans-serif;
+}
+
+/* 15.9 Состояние "нет результатов" */
+.career-no-results {
+    text-align: center;
+    padding: 60px 20px;
+    color: var(--shadowed-lace);
+}
+
+.career-no-results-icon {
+    font-size: 60px;
+    margin-bottom: 20px;
+    color: rgba(155, 185, 224, 0.5);
+}
+
+.career-no-results-text {
+    font-size: 18px;
+    margin-bottom: 30px;
+    font-family: 'Mulish', sans-serif;
+}
+
+/* 15.10 Кнопка выхода */
+.career-logout-btn {
+    background: rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    color: white;
+    padding: 8px 20px;
+    border-radius: 20px;
+    transition: all 0.3s;
+    font-family: 'Mulish', sans-serif;
+}
+
+.career-logout-btn:hover {
+    background: rgba(255, 255, 255, 0.3);
+    border-color: white;
+}
+
+/* 16. АНИМАЦИИ */
+@keyframes career-fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes career-float {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    50% { transform: translateY(-20px) rotate(5deg); }
+}
+
+/* 17. АДАПТИВНОСТЬ */
+@media (max-width: 992px) {
+    .career-tests-section {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    .career-form-box {
+        padding: 50px 40px;
+        max-width: 90%;
+        margin: 20px;
+    }
+
+    .career-form-title {
+        font-size: 32px;
+    }
+
+    .career-form-logo {
+        font-size: 28px;
+    }
+
+    .career-circle-1, .career-circle-2, .career-circle-3, .career-circle-4 {
+        opacity: 0.05;
+        filter: blur(30px);
+    }
+
+    .career-form-circle-5, .career-form-circle-6, .career-form-circle-7, .career-form-circle-8 {
+        opacity: 0.03;
+        filter: blur(20px);
+    }
+
+    .career-btn-primary,
+    .career-btn-outline {
+        padding: 16px;
+        font-size: 16px;
+    }
+
+    .career-form-control {
+        padding: 16px 18px;
+        font-size: 16px;
+    }
+
+    .career-forgot-password a {
+        font-size: 14px;
+    }
+
+    .career-dashboard-container {
+        padding: 20px 15px;
+    }
+
+    .career-welcome-card, .career-results-section {
+        padding: 25px;
+    }
+
+    .career-welcome-title {
+        font-size: 26px;
+    }
+
+    .career-section-title {
+        font-size: 24px;
+    }
+}
+
+@media (max-width: 480px) {
+    .career-form-box {
+        padding: 35px 25px;
+    }
+
+    .career-form-title {
+        font-size: 28px;
+    }
+
+    .career-form-logo {
+        font-size: 24px;
+    }
+
+    .career-form-control {
+        padding: 14px 16px;
+    }
+
+    .career-test-card {
+        padding: 20px;
+    }
+    /* ДОПОЛНИТЕЛЬНЫЕ СТИЛИ ДЛЯ КАРТОЧЕК ПРОФЕССИЙ */
+
+/* Контейнер для профессий */
+.career-professions-container {
+    position: relative;
+    z-index: 3;
+    padding: 40px 20px;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+/* Шапка секции */
+.career-professions-header {
+    text-align: center;
+    margin-bottom: 50px;
+    position: relative;
+}
+
+.career-professions-logo {
+    color: var(--cornflower-blue);
+    font-size: 32px;
+    font-weight: 800;
+    letter-spacing: 1px;
+    margin-bottom: 20px;
+    display: inline-block;
+    position: relative;
+    text-transform: uppercase;
+    font-family: 'Educational Gothic', sans-serif;
+}
+
+.career-professions-logo::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 120px;
+    height: 5px;
+    background: linear-gradient(90deg, var(--coffee-crema), var(--soft-sky-blue));
+    border-radius: 3px;
+}
+
+.career-professions-title {
+    color: var(--cornflower-blue);
+    font-weight: 700;
+    font-size: 38px;
+    margin-bottom: 15px;
+    text-align: center;
+    font-family: 'Educational Gothic', sans-serif;
+}
+
+.career-professions-subtitle {
+    color: var(--shadowed-lace);
+    font-size: 18px;
+    text-align: center;
+    line-height: 1.6;
+    max-width: 600px;
+    margin: 0 auto 40px;
+    font-family: 'Mulish', sans-serif;
+}
+
+/* Сетка карточек */
+.career-professions-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 30px;
+    margin-bottom: 50px;
+}
+
+/* Карточка профессии */
+.career-profession-card {
+    background: white;
+    border-radius: 20px;
+    padding: 30px;
+    box-shadow: 0 15px 40px rgba(89, 118, 172, 0.15);
+    border: 1px solid rgba(155, 185, 224, 0.3);
+    transition: all 0.3s;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    position: relative;
+    overflow: hidden;
+    backdrop-filter: blur(5px);
+    background: rgba(255, 255, 255, 0.95);
+}
+
+.career-profession-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 25px 50px rgba(89, 118, 172, 0.25);
+}
+
+/* Бейдж совпадения */
+.career-match-badge {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    color: white;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-weight: 700;
+    font-size: 16px;
+    box-shadow: 0 4px 15px rgba(76, 175, 80, 0.3);
+    z-index: 2;
+    font-family: 'Mulish', sans-serif;
+}
+
+.career-match-excellent {
+    background: linear-gradient(135deg, var(--success-green) 0%, #66BB6A 100%);
+}
+
+.career-match-good {
+    background: linear-gradient(135deg, var(--warning-orange) 0%, #FFB74D 100%);
+}
+
+.career-match-average {
+    background: linear-gradient(135deg, var(--coffee-crema) 0%, #d4945a 100%);
+}
+
+/* Название профессии */
+.career-profession-name {
+    color: var(--cornflower-blue);
+    font-weight: 700;
+    font-size: 24px;
+    margin-bottom: 20px;
+    padding-right: 100px;
+    font-family: 'Educational Gothic', sans-serif;
+    line-height: 1.3;
+}
+
+/* Разделитель */
+.career-profession-divider {
+    border: none;
+    height: 2px;
+    background: linear-gradient(to right, transparent, var(--soft-sky-blue), var(--coffee-crema), var(--soft-sky-blue), transparent);
+    margin: 20px 0;
+    opacity: 0.3;
+}
+
+/* Список атрибутов */
+.career-attributes-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    margin-bottom: 25px;
+    flex-grow: 1;
+}
+
+.career-attribute-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 12px;
+    padding: 10px;
+    background: rgba(155, 185, 224, 0.05);
+    border-radius: 10px;
+    transition: all 0.3s;
+    font-family: 'Mulish', sans-serif;
+}
+
+.career-attribute-item:hover {
+    background: rgba(155, 185, 224, 0.1);
+    transform: translateX(5px);
+}
+
+.career-attribute-name {
+    flex: 1;
+    color: var(--cornflower-blue);
+    font-weight: 600;
+    font-size: 15px;
+}
+
+.career-attribute-range {
+    color: var(--shadowed-lace);
+    font-size: 14px;
+    margin-right: 15px;
+}
+
+/* Приоритет */
+.career-attribute-priority {
+    padding: 4px 12px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.career-priority-high {
+    background: linear-gradient(135deg, var(--coffee-crema) 0%, #d4945a 100%);
+    color: white;
+}
+
+.career-priority-medium {
+    background: linear-gradient(135deg, var(--cornflower-blue) 0%, #7288C4 100%);
+    color: white;
+}
+
+.career-priority-low {
+    background: linear-gradient(135deg, var(--soft-sky-blue) 0%, #AFC6EB 100%);
+    color: var(--cornflower-blue);
+}
+
+/* Кнопка деталей */
+.career-btn-details {
+    background: linear-gradient(135deg, var(--cornflower-blue) 0%, #7288C4 100%);
+    border: none;
+    padding: 14px;
+    font-weight: 600;
+    border-radius: 12px;
+    transition: all 0.3s;
+    color: white;
+    box-shadow: 0 6px 20px rgba(89, 118, 172, 0.2);
+    text-align: center;
+    text-decoration: none;
+    display: block;
+    width: 100%;
+    font-family: 'Mulish', sans-serif;
+    cursor: pointer;
+    margin-top: auto;
+}
+
+.career-btn-details:hover {
+    background: linear-gradient(135deg, #4a5e91 0%, var(--cornflower-blue) 100%);
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px rgba(89, 118, 172, 0.3);
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+    .career-professions-title {
+        font-size: 32px;
+    }%
+
+    .career-professions-logo {
+        font-size: 28px;
+    }
+
+    .career-profession-name {
+        font-size: 22px;
+    }
+
+    .career-professions-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 480px) {
+    .career-profession-card {
+        padding: 20px;
+    }
+
+    .career-profession-name {
+        font-size: 20px;
+    }
+
+    .career-match-badge {
+        position: relative;
+        top: 0;
+        right: 0;
+        margin-bottom: 15px;
+        align-self: flex-start;
+    }
+}
+}

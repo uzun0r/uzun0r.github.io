@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Career Navigator - Найди профессию своей мечты</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style2.css') }}">
+</head>
+<body>
+    <!-- Навигация -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-content">
+                <a href="{{ url_for('start') }}" class="logo">
+                    <span>Career Navigator</span>
+                </a>
+                <div class="nav-links">
+                    <a href="#how-it-works">Как это работает</a>
+                    <a href="#features">Возможности</a>
+                    {% if 'user_id' in session %}
+                        <a href="{{ url_for('home') }}" class="btn-login">
+                            Личный кабинет
+                        </a>
+                        <a href="{{ url_for('logout') }}" class="btn-secondary">
+                            Выйти
+                        </a>
+                    {% else %}
+                    <a href="{{ url_for('login_page') }}" class="btn-login" style="
+                    background-color: #C18041;
+                    color: white;
+                    padding: 10px 20px;
+                    text-decoration: none;
+                    border-radius: 30px;
+                    display: inline-block;
+                    font-weight: 600;
+                    transition: background-color 0.3s ease;
+                ">
+                    Войти
+                </a>
+                    {% endif %}
+                </div>
+                <button class="menu-toggle" onclick="toggleMenu()">
+                    <span>☰</span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero секция -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h1>Найди профессию, которая <span class="highlight">подходит именно тебе</span></h1>
+                    <p class="subtitle">Пройдите научные тесты, получите персонализированные рекомендации и узнайте больше о мире профессий вместе с Career Navigator</p>
+                    <div class="hero-buttons">
+                        {% if 'user_id' in session %}
+                            <a href="{{ url_for('home') }}" class="btn-primary btn-large">
+                                Пройти тест
+                            </a>
+                            <a href="{{ url_for('home') }}" class="btn-secondary btn-large">
+                                В кабинет
+                            </a>
+                        {% else %}
+                            <a href="{{ url_for('register_page') }}" class="btn-primary btn-large">
+                                Пройти тест
+                            </a>
+                            <a href="#how-it-works" class="btn-secondary btn-large" onclick="scrollToSection('how-it-works')">
+                                Узнать больше
+                            </a>
+                        {% endif %}
+                    </div>
+                    <div class="hero-stats">
+                        <div class="stat">
+                        </div>
+                        <div class="stat">
+                        </div>
+                        <div class="stat">
+                        </div>
+                    </div>
+                </div>
+                <div class="hero-image">
+                    <div class="floating-card card1">
+                        <i class="fas fa-chart-pie"></i>
+                        <h4>Диаграммы результатов</h4>
+                        <p>Наглядная визуализация</p>
+                    </div>
+                    <div class="floating-card card2">
+                        <i class="fas fa-search"></i>
+                        <h4>Умный поиск</h4>
+                        <p>Фильтры и рекомендации</p>
+                    </div>
+                    <div class="floating-card card3">
+                        <i class="fas fa-briefcase"></i>
+                        <h4>Карьерные пути</h4>
+                        <p>Персонализированная лента</p>
+                    </div>
+                   <div class="main-image" style="background-image: url('{{ url_for('static', filename='images/10590.jpg') }}')">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Как это работает -->
+    <section class="section how-it-works" id="how-it-works">
+        <div class="container">
+            <h2 class="section-title">Как это <span class="highlight">работает</span></h2>
+            <div class="steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <div class="step-icon">
+                        <i class="fas fa-user-plus"></i>
+                    </div>
+                    <h3>Регистрация</h3>
+                    <p>Создайте аккаунт всего за минуту.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <div class="step-icon">
+                        <i class="fas fa-clipboard-check"></i>
+                    </div>
+                    <h3>Пройдите тесты</h3>
+                    <p>Ответьте на вопросы научно обоснованных тестов: Климов, Якоря профессий и другие.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <div class="step-icon">
+                        <i class="fas fa-chart-bar"></i>
+                    </div>
+                    <h3>Получите анализ</h3>
+                    <p>Система обработает результаты и покажет наглядные диаграммы в вашем профиле.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <div class="step-icon">
+                        <i class="fas fa-stream"></i>
+                    </div>
+                    <h3>Исследуйте профессии</h3>
+                    <p>Персонализированная лента с карточками профессий и полезными статьями.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Возможности -->
+    <section class="section features" id="features">
+        <div class="container">
+            <h2 class="section-title">Что вы <span class="highlight">получите</span></h2>
+            <p class="section-subtitle">Ключевые преимущества Career Navigator</p>
+            <div class="features-grid">
+                <div class="feature-card">
+
+                    <h3>Научный подход</h3>
+                    <p>Тесты Климова, Якоря профессий и другие методики, подтвержденные исследованиями в области профориентации.</p>
+                </div>
+                <div class="feature-card">
+
+                    <h3>Наглядные результаты</h3>
+                    <p>Вся информация в вашем профиле представлена в виде понятных диаграмм и графиков для легкого восприятия.</p>
+                </div>
+                <div class="feature-card">
+
+                    <h3>Персонализированная лента</h3>
+                    <p>Профессии и статьи подбираются под ваш психотип, интересы и результаты тестирования.</p>
+                </div>
+                <div class="feature-card">
+
+                    <h3>Умный поиск</h3>
+                    <p>Фильтруйте профессии по направлению, сложности обучения, востребованности и другим параметрам.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Призыв к действию -->
+    <section class="section cta">
+        <div class="container">
+            <div class="cta-content">
+                <h2>Готовы найти свой путь?</h2>
+                <p>Присоединяйтесь к Career Navigator</p>
+                {% if 'user_id' in session %}
+                    <a href="{{ url_for('home') }}" class="btn-primary btn-cta">
+                        Пройти новый тест
+                    </a>
+                    <p class="cta-note">Продолжайте исследовать профессии вместе с нами.</p>
+                {% else %}
+                    <a href="{{ url_for('register_page') }}" class="btn-primary btn-cta">
+                        Создать профиль и начать тест
+                    </a>
+                    <p class="cta-note">Это займет всего 10 минут.</p>
+                {% endif %}
+            </div>
+        </div>
+    </section>
+
+    <!-- Футер -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <a href="{{ url_for('start') }}" class="logo">
+                        <span>Career Navigator</span>
+                    </a>
+                    <p class="footer-description">Научный подход к выбору профессии.</p>
+                    <div class="social-links">
+                        <a href="#">ВК</a>
+                        <a href="#">TG</a>
+
+                    </div>
+                </div>
+                <div class="footer-links">
+                    <div class="footer-column">
+                        <h4>Career Navigator</h4>
+                        <a href="#how-it-works">Как это работает</a>
+                        <a href="#features">Возможности</a>
+
+                    </div>
+                    <div class="footer-column">
+                        <h4>Аккаунт</h4>
+                        {% if 'user_id' in session %}
+                            <a href="{{ url_for('home') }}">Личный кабинет</a>
+                            <a href="{{ url_for('home') }}">Мой профиль</a>
+                        {% else %}
+                            <a href="{{ url_for('login_page') }}">Войти</a>
+                            <a href="{{ url_for('register_page') }}">Регистрация</a>
+                        {% endif %}
+                    </div>
+                    <div class="footer-column">
+                        <h4>Помощь</h4>
+                        <a href="mailto:support@careernavigator.ru">Поддержка</a>
+                    </div>
+                    <div class="footer-column">
+                        <h4>Правовая информация</h4>
+                        <a href='#'>Политика обработки персональных данных</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2026 Career Navigator.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+    <script>
+        function scrollToSection(sectionId) {
+            const section = document.getElementById(sectionId);
+            if (section) {
+                section.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+
+        function toggleMenu() {
+            const navLinks = document.querySelector('.nav-links');
+            navLinks.classList.toggle('active');
+        }
+
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                const navLinks = document.querySelector('.nav-links');
+                navLinks.classList.remove('active');
+            });
+        });
+    </script>
+</body>
+</html>
