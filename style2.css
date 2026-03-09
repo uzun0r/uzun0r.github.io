@@ -30,7 +30,7 @@
 /* Подключение шрифтов */
 @font-face {
     font-family: 'EducationalGothic';
-    src: url('../fonts/EDUCATIONALGOTHIC-REGULAR.OTF') format('opentype');
+    src: url('fonts/EDUCATIONALGOTHIC-REGULAR.OTF') format('opentype');
     font-weight: normal;
     font-style: normal;
     font-display: swap;
@@ -38,7 +38,7 @@
 
 @font-face {
     font-family: 'Mulish';
-    src: url('../fonts/Mulish.ttf') format('truetype');
+    src: url('fonts/Mulish.ttf') format('truetype');
     font-weight: normal;
     font-style: normal;
     font-display: swap;
@@ -46,7 +46,7 @@
 
 @font-face {
     font-family: 'Mulish';
-    src: url('../fonts/Mulish-Bold.ttf') format('truetype');
+    src: url('fonts/Mulish-Bold.ttf') format('truetype');
     font-weight: bold;
     font-style: normal;
     font-display: swap;
@@ -54,7 +54,7 @@
 
 @font-face {
     font-family: 'Mulish';
-    src: url('../fonts/Mulish-Light.ttf') format('truetype');
+    src: url('fonts/Mulish-Light.ttf') format('truetype');
     font-weight: 300;
     font-style: normal;
     font-display: swap;
@@ -62,7 +62,7 @@
 
 @font-face {
     font-family: 'Mulish';
-    src: url('../fonts/Mulish-SemiBold.ttf') format('truetype');
+    src: url('fonts/Mulish-SemiBold.ttf') format('truetype');
     font-weight: 600;
     font-style: normal;
     font-display: swap;
