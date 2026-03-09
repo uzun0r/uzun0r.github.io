@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Career Navigator - Найди профессию своей мечты</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="/style2.css">
+    <link rel="stylesheet" href="style2.css">
 </head>
 <body>
     <!-- Навигация -->
@@ -18,18 +18,16 @@
                 <div class="nav-links">
                     <a href="#how-it-works">Как это работает</a>
                     <a href="#features">Возможности</a>
-                    <a href="#" class="btn-login" style="
-                    background-color: #C18041;
-                    color: white;
-                    padding: 10px 20px;
-                    text-decoration: none;
-                    border-radius: 30px;
-                    display: inline-block;
-                    font-weight: 600;
-                    transition: background-color 0.3s ease;
-                ">
-                    Войти
-                </a>
+                    
+                    <!-- Здесь я сохранил обе кнопки, просто убрал условие -->
+                    <a href="#" class="btn-login">
+                        Войти
+                    </a>
+                    <!-- Кнопка выхода осталась, но теперь видна всегда -->
+                    <a href="#" class="btn-secondary">
+                        Выйти
+                    </a>
+                    
                 </div>
                 <button class="menu-toggle" onclick="toggleMenu()">
                     <span>☰</span>
@@ -46,20 +44,18 @@
                     <h1>Найди профессию, которая <span class="highlight">подходит именно тебе</span></h1>
                     <p class="subtitle">Пройдите научные тесты, получите персонализированные рекомендации и узнайте больше о мире профессий вместе с Career Navigator</p>
                     <div class="hero-buttons">
+                        <!-- Здесь я сохранил обе кнопки -->
                         <a href="#" class="btn-primary btn-large">
-                                Пройти тест
-                            </a>
-                            <a href="#how-it-works" class="btn-secondary btn-large" onclick="scrollToSection('how-it-works')">
-                                Узнать больше
-                            </a>
+                            Пройти тест
+                        </a>
+                        <a href="#" class="btn-secondary btn-large" onclick="scrollToSection('how-it-works')">
+                            Узнать больше
+                        </a>
                     </div>
                     <div class="hero-stats">
-                        <div class="stat">
-                        </div>
-                        <div class="stat">
-                        </div>
-                        <div class="stat">
-                        </div>
+                        <div class="stat"></div>
+                        <div class="stat"></div>
+                        <div class="stat"></div>
                     </div>
                 </div>
                 <div class="hero-image">
@@ -78,8 +74,7 @@
                         <h4>Карьерные пути</h4>
                         <p>Персонализированная лента</p>
                     </div>
-                   <div class="main-image" style="background-image: url('images/10590.jpg')">
-                    </div>
+                    <div class="main-image" style="background-image: url('images/10590.jpg')"></div>
                 </div>
             </div>
         </div>
@@ -133,22 +128,18 @@
             <p class="section-subtitle">Ключевые преимущества Career Navigator</p>
             <div class="features-grid">
                 <div class="feature-card">
-
                     <h3>Научный подход</h3>
                     <p>Тесты Климова, Якоря профессий и другие методики, подтвержденные исследованиями в области профориентации.</p>
                 </div>
                 <div class="feature-card">
-
                     <h3>Наглядные результаты</h3>
                     <p>Вся информация в вашем профиле представлена в виде понятных диаграмм и графиков для легкого восприятия.</p>
                 </div>
                 <div class="feature-card">
-
                     <h3>Персонализированная лента</h3>
                     <p>Профессии и статьи подбираются под ваш психотип, интересы и результаты тестирования.</p>
                 </div>
                 <div class="feature-card">
-
                     <h3>Умный поиск</h3>
                     <p>Фильтруйте профессии по направлению, сложности обучения, востребованности и другим параметрам.</p>
                 </div>
@@ -162,10 +153,11 @@
             <div class="cta-content">
                 <h2>Готовы найти свой путь?</h2>
                 <p>Присоединяйтесь к Career Navigator</p>
+                <!-- Здесь я сохранил обе кнопки, убрал условие -->
                 <a href="#" class="btn-primary btn-cta">
-                        Создать профиль и начать тест
-                    </a>
-                    <p class="cta-note">Это займет всего 10 минут.</p>
+                    Создать профиль и начать тест
+                </a>
+                <p class="cta-note">Это займет всего 10 минут.</p>
             </div>
         </div>
     </section>
@@ -182,7 +174,6 @@
                     <div class="social-links">
                         <a href="#">ВК</a>
                         <a href="#">TG</a>
-
                     </div>
                 </div>
                 <div class="footer-links">
@@ -190,12 +181,12 @@
                         <h4>Career Navigator</h4>
                         <a href="#how-it-works">Как это работает</a>
                         <a href="#features">Возможности</a>
-
                     </div>
                     <div class="footer-column">
                         <h4>Аккаунт</h4>
+                        <!-- Сохраняю все ссылки -->
                         <a href="#">Личный кабинет</a>
-                            <a href="#">Мой профиль</a>
+                        <a href="#">Мой профиль</a>
                     </div>
                     <div class="footer-column">
                         <h4>Помощь</h4>
@@ -203,7 +194,7 @@
                     </div>
                     <div class="footer-column">
                         <h4>Правовая информация</h4>
-                        <a href='#'>Политика обработки персональных данных</a>
+                        <a href="#">Политика обработки персональных данных</a>
                     </div>
                 </div>
             </div>
