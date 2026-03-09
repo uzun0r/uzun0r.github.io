@@ -35,38 +35,25 @@
                     <p class="career-form-subtitle">Введите свои данные для доступа к аккаунту</p>
                 </div>
 
-                <!-- Flash сообщения -->
-                {% with messages = get_flashed_messages(with_categories=true) %}
-                  {% if messages %}
-                    <div class="flash-messages">
-                      {% for category, message in messages %}
-                        <div class="alert alert-{{ category }}">
-                          {{ message }}
-                        </div>
-                      {% endfor %}
-                    </div>
-                  {% endif %}
-                {% endwith %}
-
-                <!-- Форма входа -->
-                <form action="{{ url_for('login_page') }}" method="post">
+                <!-- Форма входа (простая, без логики) -->
+                <form action="home.html" method="get">
                     <!-- Email -->
                     <div class="career-form-group">
                         <label class="career-form-label">Электронная почта</label>
-                        <input type="email" name="login_email" class="career-form-control" required
-                               placeholder="example@email.com" value="{{ request.form.login_email if request.form }}">
+                        <input type="email" name="email" class="career-form-control" 
+                               placeholder="example@email.com">
                     </div>
 
                     <!-- Пароль -->
                     <div class="career-form-group">
                         <label class="career-form-label">Пароль</label>
-                        <input type="password" name="login_password" class="career-form-control" required
+                        <input type="password" name="password" class="career-form-control" 
                                placeholder="Введите ваш пароль">
                     </div>
 
                     <!-- Забыли пароль -->
                     <div class="career-forgot-password">
-                        <a href="#">Забыли пароль?</a>  <!-- Можно позже добавить маршрут -->
+                        <a href="#">Забыли пароль?</a>
                     </div>
 
                     <!-- Кнопка входа -->
@@ -80,12 +67,12 @@
                     <!-- Футер формы -->
                     <div class="career-form-footer">
                         <p>Нет аккаунта?</p>
-                        <a href="{{ url_for('register_page') }}" class="career-btn-outline">Зарегистрироваться</a>
+                        <a href="register.html" class="career-btn-outline">Зарегистрироваться</a>
                     </div>
                 </form>
             </div>
         </div>
     </div>
 </body>
-
 </html>
+
